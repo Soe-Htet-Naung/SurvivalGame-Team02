@@ -648,6 +648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hunger: 100
   healthPoints: 100
+  metabolismRate: 0.1
 --- !u!1 &329341623
 GameObject:
   m_ObjectHideFlags: 0
