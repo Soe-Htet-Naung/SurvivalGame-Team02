@@ -9,6 +9,7 @@ public class SurvivalScript : MonoBehaviour
     public float currentHealth;
     public float metabolismRate = 0.1f;
     public float sideEffectRate = 0.5f;
+    public float damage = 12;
     public Slider hpSlider;
     public Slider hungerSlider;
 
@@ -80,5 +81,18 @@ public class SurvivalScript : MonoBehaviour
         {
             currentHunger = maxHunger;
         }
+    }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.tag == "Weapon")
+        {
+            TakeDamage();
+        }
+    }
+
+    private void TakeDamage()
+    {
+        currentHealth -= damage;
     }
 }
