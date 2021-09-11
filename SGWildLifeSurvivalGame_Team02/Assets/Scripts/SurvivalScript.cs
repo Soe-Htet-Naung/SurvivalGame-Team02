@@ -8,6 +8,7 @@ public class SurvivalScript : MonoBehaviour
     public float hunger = 100;
     public float healthPoints = 100;
     public float metabolismRate = 0.1f;
+    public float sideEffectRate = 0.5f;
 
     void Start()
     {
@@ -43,7 +44,8 @@ public class SurvivalScript : MonoBehaviour
         }
         else
         {
-
+            hunger = 0;
+            healthPoints -= sideEffectRate * Time.deltaTime;
         }
     }
 }
