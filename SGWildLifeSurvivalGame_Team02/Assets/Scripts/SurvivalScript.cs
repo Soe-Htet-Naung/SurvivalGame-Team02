@@ -28,16 +28,24 @@ public class SurvivalScript : MonoBehaviour
         //UpdateHPbar&HungerBar
         hpSlider.value = currentHealth;
         hungerSlider.value = currentHunger;
+
+        //KeepHPandHunger <= 100
+        MaxHealthCheck();
+        MaxHungerCheck();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //Consume Food
         if(other.tag == "Food")
-        {
-            currentHunger += 30;
-            currentHealth += 10;
+        {  
+            if(currentHunger < maxHunger)
+            {
+                currentHunger += 30;
+                currentHealth += 10;
+            }
         }
+ 
         //Drink Wah-Ar
         if(other.tag == "Water")
         {
@@ -55,6 +63,22 @@ public class SurvivalScript : MonoBehaviour
         {
             currentHunger = 0;
             currentHealth -= sideEffectRate * Time.deltaTime;
+        }
+    }
+
+    private void MaxHealthCheck()
+    {
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
+
+    private void MaxHungerCheck()
+    {
+        if (currentHunger > maxHunger)
+        {
+            currentHunger = maxHunger;
         }
     }
 }
