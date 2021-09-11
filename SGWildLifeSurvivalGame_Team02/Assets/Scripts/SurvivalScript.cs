@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SurvivalScript : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class SurvivalScript : MonoBehaviour
     public float damage = 12;
     public Slider hpSlider;
     public Slider hungerSlider;
+    bool isDead;
 
     void Start()
     {
@@ -19,6 +21,7 @@ public class SurvivalScript : MonoBehaviour
         currentHunger = maxHunger;
         hpSlider.value = currentHealth;
         hungerSlider.value = currentHunger;
+        isDead = false;
     }
 
     // Update is called once per frame
@@ -31,8 +34,11 @@ public class SurvivalScript : MonoBehaviour
         hungerSlider.value = currentHunger;
 
         //KeepHPandHunger <= 100
-        MaxHealthCheck();
-        MaxHungerCheck();
+        HealthCheck();
+        HungerCheck();
+
+        //GameOver?
+        GameOver();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,15 +73,19 @@ public class SurvivalScript : MonoBehaviour
         }
     }
 
-    private void MaxHealthCheck()
+    private void HealthCheck()
     {
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
+        else if(currentHealth <= 0)
+        {
+            isDead = true;
+        }
     }
 
-    private void MaxHungerCheck()
+    private void HungerCheck()
     {
         if (currentHunger > maxHunger)
         {
@@ -93,6 +103,17 @@ public class SurvivalScript : MonoBehaviour
 
     private void TakeDamage()
     {
-        currentHealth -= damage;
+        if(currentHealth >= 0)
+        {
+            currentHealth -= damage;
+        }
+    }
+
+    private void GameOver()
+    {
+        if (isDead == true)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 }
