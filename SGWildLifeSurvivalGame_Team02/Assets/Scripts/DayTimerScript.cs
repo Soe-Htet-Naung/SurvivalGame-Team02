@@ -5,20 +5,20 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class DayTimerScript : MonoBehaviour
 {
-    //Days Hours and Secs
-    //public float sevenDaysInSecs = 10080f; //168mins in Sec AKA 7 days in Game time | 24mins = 1 day in our game
-    //public float aDayInSecs = 1440f; // 24mins = 1440 secs
+    //Days Hours Mins and Secs
     public float currentSec = 0; //CurrentSec of the day, which is Minute in this game.
     public float currentHr = 0;//Current Hour of the day
-    public float displaySecs = 0f; // Current Secs (Mins) for Display purposes
+    public float currentMins = 0f; // Current Mins for Display purposes
     public float currentDay = 0f;
 
 
-    //SkyBoxs and UI
+    //SkyBoxs
     public Material morningSkyBox;
     public Material afternoonSkyBox;
     public Material eveningSkyBox;
     public Material nightSkyBox;
+
+    //Texts
     public Text dayText; //To show how many days left to Survive
     public Text hourText; // To show how many hours has it been for the day
     void Start()
@@ -29,66 +29,12 @@ public class DayTimerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // DayCountDown();
-        NewDayCounter();
-        //DayNightCircle();
+        DayCounter();
         ChangeSkyBoxOverTime();
         MinsCounter();
         DisplayTimeInHrMins();
         GameOverTimer();
     }
-
-    //private void DayCountDown()
-    //{
-    //    sevenDaysInSecs -= Time.deltaTime;
-
-    //    if (sevenDaysInSecs >= 8640)
-    //    {
-    //        dayText.text = "Days Left To Survive : 7";
-    //    }
-    //    else if(sevenDaysInSecs >= 7200)
-    //    {
-    //        dayText.text = "Days Left To Survive : 6";
-    //    }
-    //    else if (sevenDaysInSecs >= 5760)
-    //    {
-    //        dayText.text = "Days Left To Survive : 5";
-    //    }
-    //    else if (sevenDaysInSecs >= 4320)
-    //    {
-    //        dayText.text = "Days Left To Survive : 4";
-    //    }
-    //    else if (sevenDaysInSecs >= 2880)
-    //    {
-    //        dayText.text = "Days Left To Survive : 3";
-    //    }
-    //    else if (sevenDaysInSecs >= 1440)
-    //    {
-    //        dayText.text = "Days Left To Survive : 2";
-    //    }
-    //    else if (sevenDaysInSecs >= 0)
-    //    {
-    //        dayText.text = "Days Left To Survive : 1";
-    //    }
-    //    else
-    //    {
-    //        dayText.text = "Times Up!";
-    //        sevenDaysInSecs = 0;
-    //    }
-
-    //}
-
-    //private void DayNightCircle()
-    //{
-    //    if(aDayInSecs > 0)
-    //    {
-    //        aDayInSecs -= Time.deltaTime;
-    //    }
-    //    else if( aDayInSecs <= 0)
-    //    {
-    //        aDayInSecs = 1440f;
-    //    }
-    //}
 
     private void ChangeSkyBoxOverTime()
     {
@@ -124,9 +70,9 @@ public class DayTimerScript : MonoBehaviour
 
 
 
-    private void DisplayTimeInHrMins() //The display mins won't go over 60
+    private void DisplayTimeInHrMins() 
     {
-        displaySecs = currentSec % 60;
+        currentMins = currentSec % 60;
         if(currentHr <= 23)
         {
             currentHr = Mathf.Floor(currentSec / 60);
@@ -136,10 +82,10 @@ public class DayTimerScript : MonoBehaviour
             currentHr = 0;
         }
        
-        hourText.text = currentHr.ToString() + " Hr : " + displaySecs.ToString("F0") + " Min";
+        hourText.text = currentHr.ToString() + " Hr : " + currentMins.ToString("F0") + " Min";
     }
 
-    private void NewDayCounter()
+    private void DayCounter()
     {
         currentDay += Mathf.Floor(currentHr/24);
         if (currentDay <= 1)
