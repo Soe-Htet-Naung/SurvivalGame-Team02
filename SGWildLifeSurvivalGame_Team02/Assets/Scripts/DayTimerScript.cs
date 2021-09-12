@@ -12,9 +12,6 @@ public class DayTimerScript : MonoBehaviour
     public float currentHr = 0;//Current Hour of the day
     public float displaySecs = 0f; // Current Secs (Mins) for Display purposes
 
-    //ForInvokeTimer
-    public float x = 60; // Secs before First Invoke
-    public float y = 60; // Secs between each Interval
 
     //SkyBoxs and UI
     public Material morningSkyBox;
@@ -25,7 +22,7 @@ public class DayTimerScript : MonoBehaviour
     public Text hourText; // To show how many hours has it been for the day
     void Start()
     {
-        //InvokeRepeating("HourCounter", x, y); //Couting the hours
+
     }
 
     // Update is called once per frame
@@ -122,18 +119,7 @@ public class DayTimerScript : MonoBehaviour
         }
     }
 
-    //private void HourCounter() //Count until 24 then back to 0 and this will be called by InvokeRepeating
-    //{
-    //    if(currentHr <= 23)
-    //    {
-    //        currentHr += 1;
-    //    }
-    //    else
-    //    {
-    //        currentHr = 0;
-    //    }
-            
-    //}
+
 
     private void DisplayTimeInHrMins() //The display mins won't go over 60
     {
