@@ -5,9 +5,17 @@ using UnityEngine.UI;
 
 public class DayTimerScript : MonoBehaviour
 {
+    //Days Hours and Secs
     public float sevenDaysInSecs = 10080f; //168mins in Sec AKA 7 days in Game time | 24mins = 1 day in our game |
+    public int hoursInAday = 24; // 24 mins IRL | 1 min = 1 Hr
+    public float aDayInSecs = 1440f; // 24mins = 1440 secs
 
-    public Text dayText;
+    //SkyBoxs and UI
+    public Material morningSkyBox;
+    public Material afternoonSkyBox;
+    public Material eveningSkyBox;
+    public Material nightSkyBox;
+    public Text dayText; //To show how many days left to Survive
     void Start()
     {
         
@@ -17,6 +25,8 @@ public class DayTimerScript : MonoBehaviour
     void Update()
     {
         DayCountDown();
+        DayNightCircle();
+        ChangeSkyBoxOverTime();
     }
 
     private void DayCountDown()
@@ -57,5 +67,37 @@ public class DayTimerScript : MonoBehaviour
             sevenDaysInSecs = 0;
         }
 
+    }
+
+    private void DayNightCircle()
+    {
+        if(aDayInSecs > 0)
+        {
+            aDayInSecs -= Time.deltaTime;
+        }
+        else if( aDayInSecs <= 0)
+        {
+            aDayInSecs = 1440f;
+        }
+    }
+
+    private void ChangeSkyBoxOverTime()
+    {
+        if(aDayInSecs >= 1080 )
+        {
+            RenderSettings.skybox = morningSkyBox;
+        }
+        else if(aDayInSecs >= 720)
+        {
+            RenderSettings.skybox = afternoonSkyBox;
+        }
+        else if(aDayInSecs >= 360)
+        {
+            RenderSettings.skybox = eveningSkyBox;
+        }
+        else
+        {
+            RenderSettings.skybox = nightSkyBox;
+        }
     }
 }
