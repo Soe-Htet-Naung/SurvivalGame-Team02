@@ -247,12 +247,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5517e0f65ec75c4aba525de5d74075f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sevenDaysInSecs: 10080
-  aDayInSecs: 1440
   currentSec: 0
   currentHr: 0
-  x: 60
-  y: 60
+  displaySecs: 0
+  currentDay: 0
   morningSkyBox: {fileID: 2100000, guid: 19b325d8192ae6a449129122516d0427, type: 2}
   afternoonSkyBox: {fileID: 2100000, guid: e042e3a075d43734cb2151822f3efb89, type: 2}
   eveningSkyBox: {fileID: 2100000, guid: cf09bdd74268f184498d51e302193dbf, type: 2}
@@ -1556,7 +1554,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Hr and Mins
 --- !u!222 &1356177355
 CanvasRenderer:
   m_ObjectHideFlags: 0
