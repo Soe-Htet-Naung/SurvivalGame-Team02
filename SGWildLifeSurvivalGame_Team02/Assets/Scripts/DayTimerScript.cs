@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class DayTimerScript : MonoBehaviour
 {
     //Days Hours and Secs
-    public float sevenDaysInSecs = 10080f; //168mins in Sec AKA 7 days in Game time | 24mins = 1 day in our game |
-    public int hoursInAday = 24; // 24 mins IRL | 1 min = 1 Hr
+    public float sevenDaysInSecs = 10080f; //168mins in Sec AKA 7 days in Game time | 24mins = 1 day in our game
     public float aDayInSecs = 1440f; // 24mins = 1440 secs
 
     //SkyBoxs and UI
