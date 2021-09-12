@@ -10,9 +10,10 @@ public class DayTimerScript : MonoBehaviour
     public float aDayInSecs = 1440f; // 24mins = 1440 secs
     public float currentSec = 0; //CurrentSec of the day, which is Minute in this game.
     public float currentHr = 0;//Current Hour of the day
+    public float displaySecs = 0f;
 
     //ForInvokeTimer
-    public float x = 0; // Secs before First Invoke
+    public float x = 60; // Secs before First Invoke
     public float y = 60; // Secs between each Interval
 
     //SkyBoxs and UI
@@ -24,7 +25,7 @@ public class DayTimerScript : MonoBehaviour
     public Text hourText; // To show how many hours has it been for the day
     void Start()
     {
-        
+        InvokeRepeating("HourCounter", x, y);
     }
 
     // Update is called once per frame
@@ -33,7 +34,8 @@ public class DayTimerScript : MonoBehaviour
         DayCountDown();
         DayNightCircle();
         ChangeSkyBoxOverTime();
-        HourCounter();
+        MinsCounter();
+        DisplayTimeInHrMins();
     }
 
     private void DayCountDown()
@@ -108,14 +110,11 @@ public class DayTimerScript : MonoBehaviour
         }
     }
 
-    private void HourCounter()
+    private void MinsCounter()
     {
         if(currentSec < 1440)
         {
             currentSec += Time.deltaTime;
-            StartCoroutine("ConvertToHours");
-            hourText.text = currentHr.ToString() + " Hr : " + currentSec.ToString("F0") + " Mins";
-
         }
         else if(currentSec >= 1440)
         {
@@ -123,14 +122,23 @@ public class DayTimerScript : MonoBehaviour
         }
     }
 
-    IEnumerator ConvertToHours()
+    private void HourCounter()
     {
-        if(currentSec >= 60)
+        if(currentHr <= 23)
         {
             currentHr += 1;
         }
-        
-        yield return currentHr;
+        else
+        {
+            currentHr = 0;
+        }
+            
+    }
+
+    private void DisplayTimeInHrMins()
+    {
+        displaySecs = currentSec % 60;
+        hourText.text = currentHr.ToString() + " Hr : " + displaySecs.ToString("F0") + " Min";
     }
 
 }
