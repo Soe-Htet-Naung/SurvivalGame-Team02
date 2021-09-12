@@ -248,6 +248,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sevenDaysInSecs: 10080
+  hoursInAday: 24
+  aDayInSecs: 1440
+  morningSkyBox: {fileID: 0}
+  afternoonSkyBox: {fileID: 0}
+  eveningSkyBox: {fileID: 0}
+  nightSkyBox: {fileID: 0}
   dayText: {fileID: 35321385}
 --- !u!4 &4747956
 Transform:
@@ -1682,7 +1688,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.2957142, g: 0.28635636, b: 0.6132076, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
