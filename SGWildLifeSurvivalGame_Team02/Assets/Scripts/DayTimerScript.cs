@@ -8,6 +8,12 @@ public class DayTimerScript : MonoBehaviour
     //Days Hours and Secs
     public float sevenDaysInSecs = 10080f; //168mins in Sec AKA 7 days in Game time | 24mins = 1 day in our game
     public float aDayInSecs = 1440f; // 24mins = 1440 secs
+    public float currentSec = 0; //CurrentSec of the day, which is Minute in this game.
+    public float currentHr = 0;//Current Hour of the day
+
+    //ForInvokeTimer
+    public float x = 0; // Secs before First Invoke
+    public float y = 60; // Secs between each Interval
 
     //SkyBoxs and UI
     public Material morningSkyBox;
@@ -15,6 +21,7 @@ public class DayTimerScript : MonoBehaviour
     public Material eveningSkyBox;
     public Material nightSkyBox;
     public Text dayText; //To show how many days left to Survive
+    public Text hourText; // To show how many hours has it been for the day
     void Start()
     {
         
@@ -26,6 +33,7 @@ public class DayTimerScript : MonoBehaviour
         DayCountDown();
         DayNightCircle();
         ChangeSkyBoxOverTime();
+        HourCounter();
     }
 
     private void DayCountDown()
@@ -99,4 +107,30 @@ public class DayTimerScript : MonoBehaviour
             RenderSettings.skybox = nightSkyBox;
         }
     }
+
+    private void HourCounter()
+    {
+        if(currentSec < 1440)
+        {
+            currentSec += Time.deltaTime;
+            StartCoroutine("ConvertToHours");
+            hourText.text = currentHr.ToString() + " Hr : " + currentSec.ToString("F0") + " Mins";
+
+        }
+        else if(currentSec >= 1440)
+        {
+            currentSec = 0;
+        }
+    }
+
+    IEnumerator ConvertToHours()
+    {
+        if(currentSec >= 60)
+        {
+            currentHr += 1;
+        }
+        
+        yield return currentHr;
+    }
+
 }
