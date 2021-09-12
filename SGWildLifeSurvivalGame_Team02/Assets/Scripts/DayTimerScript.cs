@@ -29,24 +29,24 @@ public class DayTimerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DayCounter();
-        ChangeSkyBoxOverTime();
-        MinsCounter();
-        DisplayTimeInHrMins();
+        DisplayDayCount();
+        DayNightCircle();
+        SecsCounter();
+        DisplayTime();
         GameOverTimer();
     }
 
-    private void ChangeSkyBoxOverTime()
+    private void DayNightCircle() //Change  skybox every 6hrs (6Mins IRL)
     {
-        if(currentHr >= 1080 )
+        if(currentHr <= 6 )
         {
             RenderSettings.skybox = morningSkyBox;
         }
-        else if(currentHr >= 720)
+        else if(currentHr <= 12)
         {
             RenderSettings.skybox = afternoonSkyBox;
         }
-        else if(currentHr >= 360)
+        else if(currentHr <= 18)
         {
             RenderSettings.skybox = eveningSkyBox;
         }
@@ -56,13 +56,13 @@ public class DayTimerScript : MonoBehaviour
         }
     }
 
-    private void MinsCounter()
+    private void SecsCounter()
     {
-        if(currentSec < 1440)
+        if(currentSec < 1440) //less than total sec/mins of a day
         {
             currentSec += Time.deltaTime;
         }
-        else if(currentSec >= 1440)
+        else if(currentSec >= 1440) //Reset the day
         {
             currentSec = 0;
         }
@@ -70,7 +70,7 @@ public class DayTimerScript : MonoBehaviour
 
 
 
-    private void DisplayTimeInHrMins() 
+    private void DisplayTime() 
     {
         currentMins = currentSec % 60;
         if(currentHr <= 23)
@@ -85,7 +85,7 @@ public class DayTimerScript : MonoBehaviour
         hourText.text = currentHr.ToString() + " Hr : " + currentMins.ToString("F0") + " Min";
     }
 
-    private void DayCounter()
+    private void DisplayDayCount()
     {
         currentDay += Mathf.Floor(currentHr/24);
         if (currentDay <= 1)
@@ -105,7 +105,6 @@ public class DayTimerScript : MonoBehaviour
         {
             dayText.text = "Total Surived Days : " + currentDay.ToString() + " Days! Game OVER";
             SceneManager.LoadScene(3);
-            
         }
     }
 
