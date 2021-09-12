@@ -10,7 +10,7 @@ public class DayTimerScript : MonoBehaviour
     public float aDayInSecs = 1440f; // 24mins = 1440 secs
     public float currentSec = 0; //CurrentSec of the day, which is Minute in this game.
     public float currentHr = 0;//Current Hour of the day
-    public float displaySecs = 0f;
+    public float displaySecs = 0f; // Current Secs (Mins) for Display purposes
 
     //ForInvokeTimer
     public float x = 60; // Secs before First Invoke
@@ -25,7 +25,7 @@ public class DayTimerScript : MonoBehaviour
     public Text hourText; // To show how many hours has it been for the day
     void Start()
     {
-        InvokeRepeating("HourCounter", x, y);
+        //InvokeRepeating("HourCounter", x, y); //Couting the hours
     }
 
     // Update is called once per frame
@@ -122,22 +122,31 @@ public class DayTimerScript : MonoBehaviour
         }
     }
 
-    private void HourCounter()
+    //private void HourCounter() //Count until 24 then back to 0 and this will be called by InvokeRepeating
+    //{
+    //    if(currentHr <= 23)
+    //    {
+    //        currentHr += 1;
+    //    }
+    //    else
+    //    {
+    //        currentHr = 0;
+    //    }
+            
+    //}
+
+    private void DisplayTimeInHrMins() //The display mins won't go over 60
     {
+        displaySecs = currentSec % 60;
         if(currentHr <= 23)
         {
-            currentHr += 1;
+            currentHr = Mathf.Floor(currentSec / 60);
         }
         else
         {
             currentHr = 0;
         }
-            
-    }
-
-    private void DisplayTimeInHrMins()
-    {
-        displaySecs = currentSec % 60;
+       
         hourText.text = currentHr.ToString() + " Hr : " + displaySecs.ToString("F0") + " Min";
     }
 
