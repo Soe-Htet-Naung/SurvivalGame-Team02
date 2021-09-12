@@ -54,6 +54,7 @@ public class DayTimerScript : MonoBehaviour
         else
         {
             dayText.text = "Times Up!";
+            sevenDaysInSecs = 0;
         }
 
     }
