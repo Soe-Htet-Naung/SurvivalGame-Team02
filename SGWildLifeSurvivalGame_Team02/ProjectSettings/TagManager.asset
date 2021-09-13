@@ -7,6 +7,7 @@ TagManager:
   - Food
   - Water
   - Weapon
+  - LandMark
   layers:
   - Default
   - TransparentFX
