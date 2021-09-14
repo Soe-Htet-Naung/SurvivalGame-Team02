@@ -9,6 +9,7 @@ public class FruitSpawner : MonoBehaviour
     public GameObject fruitPrefab;
     public Transform[]  spawnPoints;
     public int currentSpawnLocation;
+
     
     void Start()
     {
@@ -18,14 +19,14 @@ public class FruitSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void SpawnFruit()
     {
-        currentSpawnLocation = Random.Range(0, spawnPoints.Length);
+        currentSpawnLocation = Random.Range(0, spawnPoints.Length); //Randomize the location to spawn from given locations
 
-        Instantiate(fruitPrefab, spawnPoints[currentSpawnLocation].position, spawnPoints[currentSpawnLocation].rotation);
+        GameObject orangeFruit =  Instantiate(fruitPrefab, spawnPoints[currentSpawnLocation].position, spawnPoints[currentSpawnLocation].rotation);
     }
 
 }
