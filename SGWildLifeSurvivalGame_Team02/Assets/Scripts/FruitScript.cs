@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class FruitScript : MonoBehaviour
 {
-    //bool isEaten = false;
-    //public float selfDestoryTimer = 0;
+    public float lifeTime = 60f;
     void Start()
     {
         
@@ -16,11 +15,15 @@ public class FruitScript : MonoBehaviour
     {
         transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime); //Rotate 'cuz it looks cool and make the fruit more noticable by the player
 
-    //    selfDestoryTimer += Time.deltaTime;
-    //    //Did player eat me or should I suicide ?
-    //    if (isEaten == false && selfDestoryTimer >= 60)
-    //    {
-    //        Destroy(this.gameObject);
-    //    }
+        if(lifeTime > 0)
+        {
+            lifeTime -= Time.deltaTime;
+            //Did player eat me or should I suicide ?
+            if (lifeTime <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+
     }
 }

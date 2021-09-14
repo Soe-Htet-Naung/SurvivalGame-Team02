@@ -1532,11 +1532,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430748780}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &525054358 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4448574832883342626, guid: 89a478f53963af64ca910f262fc09a05, type: 3}
-  m_PrefabInstance: {fileID: 4448574832930106548}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &619724375
 GameObject:
   m_ObjectHideFlags: 0
@@ -4844,7 +4839,11 @@ PrefabInstance:
     - target: {fileID: 2723831059245127226, guid: 468315b7285816441b411cc2cd1e4c08, type: 3}
       propertyPath: fruitPrefab
       value: 
-      objectReference: {fileID: 525054358}
+      objectReference: {fileID: 4448574832883342626, guid: 89a478f53963af64ca910f262fc09a05, type: 3}
+    - target: {fileID: 2723831059245127226, guid: 468315b7285816441b411cc2cd1e4c08, type: 3}
+      propertyPath: timeBeforeEachSpawn
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 468315b7285816441b411cc2cd1e4c08, type: 3}
 --- !u!1001 &4448574832930106548
