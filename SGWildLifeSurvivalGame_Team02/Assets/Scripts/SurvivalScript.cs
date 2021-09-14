@@ -50,6 +50,7 @@ public class SurvivalScript : MonoBehaviour
             {
                 currentHunger += 30;
                 currentHealth += 10;
+                Destroy(other.gameObject);
             }
         }
  
