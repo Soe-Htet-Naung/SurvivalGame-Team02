@@ -229,24 +229,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2723831059245127224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36b45ed4117ae084dad2051e9e19a01d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9babf8e300caf1b4c8ce0471da23fcd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startSpwanTimer: 2
   timeBeforeEachSpawn: 15
-  fruitPrefab: {fileID: 0}
-  spawnPoints:
-  - {fileID: 2723831059352864692}
-  - {fileID: 2723831059732317103}
-  - {fileID: 2723831059781927482}
-  - {fileID: 2723831059345367077}
-  - {fileID: 2723831058833962132}
-  - {fileID: 2723831060314134658}
-  - {fileID: 2723831060124240005}
-  - {fileID: 2723831059739406935}
-  - {fileID: 2723831058494116413}
-  - {fileID: 2723831059938025606}
-  - {fileID: 2723831058386037690}
+  fruitPrefab: {fileID: 4448574832883342626, guid: 89a478f53963af64ca910f262fc09a05, type: 3}
+  spawnPoints: []
   currentSpawnLocation: 0
 --- !u!1 &2723831059345367076
 GameObject:
