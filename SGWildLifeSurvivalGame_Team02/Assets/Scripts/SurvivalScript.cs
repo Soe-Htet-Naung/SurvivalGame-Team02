@@ -100,7 +100,10 @@ public class SurvivalScript : MonoBehaviour
         {
             TakeDamage();
         }
+        
+        
     }
+
 
     private void TakeDamage()
     {
