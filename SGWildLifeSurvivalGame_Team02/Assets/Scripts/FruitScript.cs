@@ -13,7 +13,7 @@ public class FruitScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime); //Rotate 'cuz it looks cool and make the fruit more noticable by the player
+        transform.Rotate(new Vector3(0, 20, 0) * Time.deltaTime); //Rotate 'cuz it looks cool and make the fruit more noticable by the player
 
         if(lifeTime > 0)
         {
