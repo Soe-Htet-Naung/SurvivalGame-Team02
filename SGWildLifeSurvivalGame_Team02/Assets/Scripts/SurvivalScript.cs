@@ -96,14 +96,13 @@ public class SurvivalScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.tag == "Weapon")
+        if(col.gameObject.tag == "Weapon" || col.gameObject.tag == "Enemy")
         {
             TakeDamage();
         }
         
         
     }
-
 
     private void TakeDamage()
     {
