@@ -9,6 +9,7 @@ TagManager:
   - Weapon
   - LandMark
   - OrangeSpawner
+  - Restrainers
   layers:
   - Default
   - TransparentFX
