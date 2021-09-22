@@ -10,6 +10,7 @@ TagManager:
   - LandMark
   - OrangeSpawner
   - Enemy
+  - Restrainers
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,9 @@ public class DayTimerScript : MonoBehaviour
     public float currentMins = 0f; // Current Mins for Display purposes
     public float currentDay = 0f;
 
+    //bools for day/night
+    [SerializeField] bool isDawn = false;
+
 
     //SkyBoxs
     public Material morningSkyBox;
@@ -18,12 +21,16 @@ public class DayTimerScript : MonoBehaviour
     public Material eveningSkyBox;
     public Material nightSkyBox;
 
+    //Particle Systems
+    ParticleSystem fogParSys;
+
     //Texts
     public Text dayText; //To show how many days left to Survive
     public Text hourText; // To show how many hours has it been for the day
     void Start()
     {
-
+        fogParSys = GetComponent<ParticleSystem>();
+        fogParSys.enableEmission = true;
     }
 
     // Update is called once per frame
@@ -34,6 +41,9 @@ public class DayTimerScript : MonoBehaviour
         SecsCounter();
         DisplayTime();
         GameOverTimer();
+        WeatherParticleSystem();
+
+
     }
 
     private void DayNightCircle() //Change  skybox every 6hrs (6Mins IRL)
@@ -41,21 +51,49 @@ public class DayTimerScript : MonoBehaviour
         if(currentHr <= 6 )
         {
             RenderSettings.skybox = morningSkyBox;
+            
         }
         else if(currentHr <= 12)
         {
             RenderSettings.skybox = afternoonSkyBox;
+            
         }
         else if(currentHr <= 18)
         {
             RenderSettings.skybox = eveningSkyBox;
+            
         }
         else
         {
             RenderSettings.skybox = nightSkyBox;
+            
         }
     }
+    
+    private void WeatherParticleSystem() // Fogs at every morning
+    {
+        if (currentHr >= 0 && currentHr < 6)
+        {
+            isDawn = true;
+            if (fogParSys.isPlaying == false)
+            {
+                fogParSys.Play();
+                fogParSys.enableEmission = true;
+            }
 
+
+        }
+        else if(currentHr > 6)
+        {
+            isDawn = false;
+            if(fogParSys.isPlaying == true)
+            {
+                fogParSys.Stop();
+                fogParSys.enableEmission = false;
+            }
+
+        }
+    }
     private void SecsCounter()
     {
         if(currentSec < 1440) //less than total sec/mins of a day
