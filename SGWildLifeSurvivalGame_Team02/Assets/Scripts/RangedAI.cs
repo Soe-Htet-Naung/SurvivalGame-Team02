@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class RangedAI : MonoBehaviour{
 
-    public float lookRadius = 10f;
+    public float lookRadius = 20f;
+    public float attackRadius = 10f;
 
 
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class RangedAI : MonoBehaviour{
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, lookRadius);
+            Gizmos.DrawWireSphere(transform.position, attackRadius);
         }
     }
 }
