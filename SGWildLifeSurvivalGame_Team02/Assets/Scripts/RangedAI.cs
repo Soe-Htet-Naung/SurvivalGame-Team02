@@ -32,6 +32,11 @@ public class RangedAI : MonoBehaviour{
         if (distance<= lookRadius)
         {
             enemy.SetDestination(Player.position);
+
+            if (distance<= agent.stoppingDistance)
+            {
+                //attack the target with projectiles
+            }
         }
     }
 
@@ -39,7 +44,7 @@ public class RangedAI : MonoBehaviour{
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
-        Gizmos.DrawWireSphere(transform.position, attackRadius);
+       
         
     }
 
