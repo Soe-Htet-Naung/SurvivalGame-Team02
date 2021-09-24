@@ -22,17 +22,14 @@ public class RangedAI : MonoBehaviour{
 
     // Update is called once per frame
     void Update()
+    {}
+
+    void OnDrawGizmosSelected ()
     {
-        float distance = Vector3.Distance(target.position, transform.position);
-        if (distance <= lookRadius)
-        {
-            agent.SetDestination(target.position);
-        }
-        void OnDrawGizmosSelected ()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, lookRadius);
-            Gizmos.DrawWireSphere(transform.position, attackRadius);
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, lookRadius);
+        Gizmos.DrawWireSphere(transform.position, attackRadius);
+        
     }
+
 }
