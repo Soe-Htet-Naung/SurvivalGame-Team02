@@ -13,14 +13,14 @@ public class RangedAI : MonoBehaviour{
     public Transform Player;
 
 
-    Transform target;
+    public Transform target;
     NavMeshAgent agent;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        target = PlayerManager.instance.player.transform;
+        target = Player;
         agent = GetComponent<NavMeshAgent>();
     }
 
