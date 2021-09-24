@@ -8,6 +8,10 @@ public class RangedAI : MonoBehaviour{
     public float lookRadius = 20f;
     public float attackRadius = 10f;
 
+    public NavMeshAgent enemy;
+
+    public Transform Player;
+
 
     Transform target;
     NavMeshAgent agent;
@@ -16,13 +20,20 @@ public class RangedAI : MonoBehaviour{
     // Start is called before the first frame update
     void Start()
     {
-        target = PlayerManager.instance.Player.transform;
+        target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
-    {}
+    {
+        float distance = Vector3.Distance(target.position,transform.position);
+
+        if (distance<= lookRadius)
+        {
+            enemy.SetDestination(Player.position);
+        }
+    }
 
     void OnDrawGizmosSelected ()
     {
