@@ -7,11 +7,14 @@ public class Projectile : MonoBehaviour
     public float speed;
     private Vector2 target;
     public Transform Player;
+    public float iniProjLifeTime = 5f;
+    float projLifeTime;
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
         target = new Vector2(Player.position.x, Player.position.y);
+        projLifeTime = iniProjLifeTime;
     }
 
     // Update is called once per frame
@@ -19,17 +22,23 @@ public class Projectile : MonoBehaviour
     {
        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
        if (transform.position.x == target.x && transform.position.y == target.y){
-           DestroyProjectile();
+           DecayProjectileLifeTime();
        } 
     }
-    void OnTriggerEnter3d(SphereCollider other){
+    void OnTriggerEnter(SphereCollider other){
         if (other.CompareTag("Player"))
         {
-            DestroyProjectile();
+            Destroy(this.gameObject);
         }
     }
-    void DestroyProjectile(){
-        Destroy(gameObject);
+    void DecayProjectileLifeTime(){
+        projLifeTime -= Time.deltaTime;
+        if(projLifeTime <= 0)
+        {
+            Destroy(this.gameObject);
+            projLifeTime -= iniProjLifeTime;
+        }
+
     }
 }
 

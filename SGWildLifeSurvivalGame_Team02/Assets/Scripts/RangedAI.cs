@@ -10,7 +10,7 @@ public class RangedAI : MonoBehaviour{
 
     private float timeBtwShots;
     
-    public float startTimeBtwShots;
+    public float startTimeBtwShots = 15f;
 
     public GameObject Projectile;
 
@@ -41,6 +41,14 @@ public class RangedAI : MonoBehaviour{
         // Check for player in sight range 
 
         float distance = Vector3.Distance(target.position,transform.position);
+        if(timeBtwShots > 0)
+        {
+            timeBtwShots -= Time.deltaTime;
+        }
+        if(timeBtwShots <= 0)
+        {
+            timeBtwShots = startTimeBtwShots;
+        }
 
         if (distance<= lookRadius)
         {
