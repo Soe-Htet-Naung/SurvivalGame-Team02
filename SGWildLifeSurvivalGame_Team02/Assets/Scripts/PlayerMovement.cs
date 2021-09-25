@@ -27,6 +27,18 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
+        if (isGrounded)
+        {
+            if (Input.GetKey("left shift"))
+            {
+                speed = 20f;
+            }
+            else
+            {
+                speed = 12f;
+            }
+        }
+
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
