@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed;
+    public float speed = 10f;
     private Vector2 target;
     public Transform Player;
     public float iniProjLifeTime = 5f;
@@ -25,7 +25,8 @@ public class Projectile : MonoBehaviour
            DecayProjectileLifeTime();
        } 
     }
-    void OnTriggerEnter(SphereCollider other){
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.CompareTag("Player"))
         {
             Destroy(this.gameObject);
