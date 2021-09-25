@@ -23,8 +23,9 @@ public class Projectile : MonoBehaviour
        } 
     }
     void OnTriggerEnter3d(SphereCollider other){
-        if (other.CompareTag("Player")){
-
+        if (other.CompareTag("Player"))
+        {
+            DestroyProjectile();
         }
     }
     void DestroyProjectile(){
