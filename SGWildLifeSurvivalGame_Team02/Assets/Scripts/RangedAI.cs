@@ -7,12 +7,10 @@ public class RangedAI : MonoBehaviour{
 
     public float lookRadius = 20f;
     public float attackRadius = 10f;
-
-    private float timeBtwShots;
     
-    public float startTimeBtwShots = 15f;
-
-    public GameObject Projectile;
+    public float speed = 1;
+    public GameObject ProjectilePrefab;
+    public Transform firePoint;
 
     public NavMeshAgent enemy;
 
@@ -21,9 +19,12 @@ public class RangedAI : MonoBehaviour{
     public bool playerInSightRange;
     public bool playerInAttackRange;
 
+    public float fireRate = 1f;
+    private float fireCountdown = 0f;
+
     
     bool allreadyAttacked;
-    public Transform target;
+    private Transform target;
     NavMeshAgent agent;
 
    
@@ -32,7 +33,7 @@ public class RangedAI : MonoBehaviour{
     {
         target = Player;
         agent = GetComponent<NavMeshAgent>();
-        timeBtwShots = startTimeBtwShots;
+      
     }
 
     // Update is called once per frame
@@ -41,29 +42,20 @@ public class RangedAI : MonoBehaviour{
         // Check for player in sight range 
 
         float distance = Vector3.Distance(target.position,transform.position);
-        if(timeBtwShots > 0)
-        {
-            timeBtwShots -= Time.deltaTime;
-        }
-        if(timeBtwShots <= 0)
-        {
-            timeBtwShots = startTimeBtwShots;
-        }
+
 
         if (distance<= lookRadius)
         {
             enemy.SetDestination(Player.position);
 
-            if (distance<= agent.stoppingDistance || timeBtwShots <= 0)
+            if (distance<= agent.stoppingDistance || fireCountdown <=0f)
             {
                 //attack the target with projectiles
-                Instantiate(Projectile, transform.position, Quaternion.identity);
-                timeBtwShots = startTimeBtwShots;
+                Shoot();
+                fireCountdown = 1f/fireRate;
+
             }
-            else
-            {
-                timeBtwShots -= Time.deltaTime;
-            }
+            fireCountdown -= Time.deltaTime;
         }
     }
 
@@ -73,6 +65,15 @@ public class RangedAI : MonoBehaviour{
         Gizmos.DrawWireSphere(transform.position, lookRadius);
        
         
+    }
+    void Shoot()
+    {
+        Debug.Log("SHOOT!");
+        GameObject spitBall = (GameObject)Instantiate(ProjectilePrefab, firePoint.position, firePoint.rotation);
+        Projectile projectile = spitBall.GetComponent<Projectile>();
+
+        if (projectile != null)
+            projectile.Chase(target);
     }
 
 }
