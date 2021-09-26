@@ -2,33 +2,22 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private Transform target;
+    [SerializeField] AudioClip projectileDesSFX;
 
-    public float speed = 20f;
-    public void Chase(Transform _target)
+    public int damage = 20;
+    private void OnCollisionEnter(Collision collision)
     {
-        target = _target;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (target == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Vector3 dir = target.position - transform.position;
-        float distanceThisFrame = speed * Time.deltaTime;
+            if (collision.transform.CompareTag("Player"))
+            {
+                collision.transform.GetComponent<SurvivalScript>().currentHealth -= damage;
+            }
 
-        if (dir.magnitude <= distanceThisFrame)
-        {
-            HitTarget();
-            return;
-        }
-        transform.Translate (dir.normalized * distanceThisFrame, Space.World);   
+        
+        AudioSource.PlayClipAtPoint(projectileDesSFX, transform.position);
+        Destroy(gameObject);
     }
-    void HitTarget()
+    public void SetAttributes(int _damage)
     {
-        Debug.Log("Hit!");
+        damage = _damage;
     }
 }
