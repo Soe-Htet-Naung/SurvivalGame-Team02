@@ -7649,6 +7649,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356177352}
   m_CullTransparentMesh: 1
+--- !u!1 &1419914003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1419914005}
+  - component: {fileID: 1419914004}
+  m_Layer: 0
+  m_Name: MonkeySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1419914004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419914003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bd85397a4ff014b9a4cb300d70dada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyAI: {fileID: 1692346423}
+  xPos: 0
+  zPos: 0
+  enemyCount: 20
+--- !u!4 &1419914005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419914003}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 658.04, y: 101.114, z: 325.82}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1433028724 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2172431378784495042, guid: ed00a0687537ef447bbd678aa76acd42, type: 3}
@@ -8019,19 +8066,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1692346423}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd7c82b5e631c73459b0af7e28b49404, type: 3}
+  m_Script: {fileID: 11500000, guid: 4543a402edec5014583bf2696ef29cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookRadius: 20
-  attackRadius: 10
-  speed: 1
-  ProjectilePrefab: {fileID: 4389671797792562512, guid: 345844e8daf5000419e6d8e6400abc91, type: 3}
-  firePoint: {fileID: 1855660062}
   enemy: {fileID: 1692346424}
   Player: {fileID: 821349873}
-  playerInSightRange: 1
-  playerInAttackRange: 1
-  fireRate: 0.2
 --- !u!54 &1692346426
 Rigidbody:
   m_ObjectHideFlags: 0
