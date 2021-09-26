@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class GenerateEnemies : MonoBehaviour
 {
-    public float startSpwanTimer = 5;
-    public float timeBeforeEachSpawn = 30;
-    public GameObject enemyPrefab;
-
+    public GameObject EnemyAI;
+    public int xPos;
+    public int zPos;
+    public int enemyCount;
+    // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnEnemies", startSpwanTimer, timeBeforeEachSpawn);
+        StartCoroutine(EnemyDrop());
     }
-
-    // Update is called once per frame
-    void Update()
+    IEnumerator EnemyDrop()
     {
-
+        while (enemyCount < 10)
+        {
+            xPos = Random.Range(600, 640);
+            zPos = Random.Range(300, 340);
+            Instantiate(EnemyAI, new Vector3(xPos, 110, zPos), Quaternion.identity);
+            yield return new WaitForSeconds(0.1f);
+            enemyCount += 1;
+        }
+    }  
     }
-
-    private void SpawnEnemies()
-    {
-
-        GameObject spawnedEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-    }
-
-}
